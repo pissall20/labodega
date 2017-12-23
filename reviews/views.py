@@ -90,25 +90,26 @@ def user_recommendation_list(request):
     # get request user reviewed wines
     user_reviews = Review.objects.filter(user_name=request.user.username).prefetch_related('wine')
     user_reviews_wine_ids = set(map(lambda x: x.wine.id, user_reviews))
-    """
+
+
     # get request user cluster name (just the first one right now)
     try:
         user_cluster_name = User.objects.get(username=request.user.username).cluster_set.first().name
     except:  # if no cluster assigned for a user, update clusters
         update_clusters()
         user_cluster_name = User.objects.get(username=request.user.username).cluster_set.first().name
-    # get usernames for other memebers of the cluster
+
+    # get usernames for other members of the cluster
     user_cluster_other_members = Cluster.objects.get(name=user_cluster_name).users.exclude(username=request.user.username).all()
     other_members_usernames = set(map(lambda x: x.username, user_cluster_other_members))
 
     # get reviews by those users, excluding wines reviewed by the request user
     other_users_reviews = Review.objects.filter(user_name__in=other_members_usernames).exclude(wine__id__in=user_reviews_wine_ids)
     other_users_reviews_wine_ids = set(map(lambda x: x.wine.id, other_users_reviews))
-    """
+
     # then get a wine list including the previous IDs, order by rating
-    wine_list = Wine.objects.exclude(id__in=user_reviews_wine_ids)
-    #     sorted(list(Wine.objects.filter(id__in=other_users_reviews_wine_ids)),
-    #     key=lambda x: x.average_rating, reverse=True)
+    wine_list = sorted(list(Wine.objects.filter(id__in=other_users_reviews_wine_ids)),
+        key=lambda x: x.average_rating, reverse=True)
 
     print(wine_list)
 
