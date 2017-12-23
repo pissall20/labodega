@@ -18,7 +18,7 @@ def save_review_from_row(review_row):
     review.wine = Wine.objects.get(id=review_row[2])
     review.rating = review_row[3]
     review.pub_date = datetime.datetime.now()
-    review.comment = review_row[4]
+    review.comments = review_row[4]
     review.save()
 
 

@@ -36,4 +36,4 @@ class Cluster(models.Model):
     users = models.ManyToManyField(User)
 
     def get_members(self):
-        return "\n".join([u.username for u in self.users.all()])
+        return "/n".join([u.username for u in self.users.all()])

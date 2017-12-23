@@ -7,9 +7,7 @@ from .forms import ReviewForm
 from .suggestions import update_clusters
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, authenticate
-
 import datetime
-
 from django.contrib.auth.decorators import login_required
 
 def signup(request):
@@ -35,6 +33,7 @@ def review_list(request):
 
 def review_detail(request, review_id):
     review = get_object_or_404(Review, pk=review_id)
+    print(review.comments)
     return render(request, 'reviews/review_detail.html', {'review': review})
 
 

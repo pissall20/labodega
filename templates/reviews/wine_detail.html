@@ -25,6 +25,7 @@
 <p>No reviews for this wine yet</p>
 {% endif %}
 
+{% if user.is_authenticated %}
 <h3>Add your review</h3>
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
@@ -37,4 +38,6 @@
     </button>
     {% endbuttons %}
 </form>
+{% endif %}
+
 {% endblock %}

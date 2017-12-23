@@ -3,18 +3,32 @@
 
 
 {% block title %}
-<h2>Login</h2>
+<h2 style="text-align:center;">Login to W!neboiz</h2>
 {% endblock %}
 
+
+
 {% block content %}
+
+<style>
+.form-control {
+margin:auto;
+width:240px;
+}
+
+.form-group {
+text-align:center;
+}
+</style>
+
 {% if user.is_authenticated %}
-<p>Thank you! You're already logged in.</p>
+<p style="text-align:center;">Thank you! You're already logged in.</p>
 {% else %}
 <form action="{% url 'login' %}" method="post" class="form">
     {% csrf_token %}
     {% bootstrap_form form layout='inline' %}
     {% buttons %}
-    <button type="submit" class="btn btn-primary">
+    <button type="submit" class="btn btn-primary" style="margin:auto;">
       {% bootstrap_icon "user" %} Login
     </button>
     {% endbuttons %}
