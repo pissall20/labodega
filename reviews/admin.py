@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Wine, Review, Cluster
+from reviews.models import Wine, Review, Cluster
 # Register your models here.
 
 

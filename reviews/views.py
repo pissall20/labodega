@@ -2,9 +2,9 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
-from .models import Review, Wine, Cluster
-from .forms import ReviewForm
-from .suggestions import update_clusters
+from reviews.models import Review, Wine, Cluster
+from reviews.forms import ReviewForm
+from reviews.suggestions import update_clusters
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, authenticate
 import datetime
