@@ -8,7 +8,7 @@
 {% if wine_list %}
 <div class="row">
     {% for wine in wine_list %}
-    <div class="col-xs-6 col-lg-4">
+    <div class="col-xs-6 col-lg-4 col-md-4">
         <h4><a href="{% url 'reviews:wine_detail' wine.id %}">
         {{ wine.name }}
         </a></h4>

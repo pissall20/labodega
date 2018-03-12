@@ -19,7 +19,7 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect('/')
+            return redirect('/reviews')
     else:
         form = UserCreationForm()
     return render(request, 'registration/registration_form.html', {'form': form})
@@ -64,7 +64,7 @@ def add_review(request, wine_id):
         review.wine = wine
         review.user_name = user_name
         review.rating = rating
-        review.comment = comment
+        review.comments = comment
         review.pub_date = datetime.datetime.now()
         review.save()
         update_clusters()
