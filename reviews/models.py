@@ -1,6 +1,7 @@
 from django.db import models
 import numpy as np
 from django.contrib.auth.models import User
+
 # Create your models here.
 
 
@@ -16,13 +17,7 @@ class Wine(models.Model):
 
 
 class Review(models.Model):
-    RATING_CHOICES = (
-        (1, '1'),
-        (2, '2'),
-        (3, '3'),
-        (4, '4'),
-        (5, '5'),
-    )
+    RATING_CHOICES = ((1, "1"), (2, "2"), (3, "3"), (4, "4"), (5, "5"))
 
     wine = models.ForeignKey(Wine)
     pub_date = models.DateTimeField("date_published")
