@@ -11,39 +11,68 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-    ]
+    dependencies = [migrations.swappable_dependency(settings.AUTH_USER_MODEL)]
 
     operations = [
         migrations.CreateModel(
-            name='Cluster',
+            name="Cluster",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100)),
-                ('users', models.ManyToManyField(to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=100)),
+                ("users", models.ManyToManyField(to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.CreateModel(
-            name='Review',
+            name="Review",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('pub_date', models.DateTimeField(verbose_name=b'date_published')),
-                ('user_name', models.CharField(max_length=100)),
-                ('comments', models.CharField(max_length=200)),
-                ('rating', models.IntegerField(choices=[(1, b'1'), (2, b'2'), (3, b'3'), (4, b'4'), (5, b'5')])),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("pub_date", models.DateTimeField(verbose_name=b"date_published")),
+                ("user_name", models.CharField(max_length=100)),
+                ("comments", models.CharField(max_length=200)),
+                (
+                    "rating",
+                    models.IntegerField(
+                        choices=[(1, b"1"), (2, b"2"), (3, b"3"), (4, b"4"), (5, b"5")]
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Wine',
+            name="Wine",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=200)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=200)),
             ],
         ),
         migrations.AddField(
-            model_name='review',
-            name='wine',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='reviews.Wine'),
+            model_name="review",
+            name="wine",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to="reviews.Wine"
+            ),
         ),
     ]
