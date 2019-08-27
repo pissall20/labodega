@@ -27,7 +27,6 @@ if __name__ == "__main__":
     if len(sys.argv) == 2:
         print ("Reading from file " + str(sys.argv[1]))
         reviews_df = pd.read_csv(sys.argv[1])
-        print reviews_df
 
         reviews_df.apply(save_review_from_row, axis=1)
 

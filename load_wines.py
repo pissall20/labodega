@@ -22,7 +22,6 @@ if __name__ == "__main__":
     if len(sys.argv) == 2:
         print ("Reading from file " + str(sys.argv[1]))
         wines_df = pd.read_csv(sys.argv[1])
-        print wines_df
 
         wines_df.apply(save_wine_from_row, axis=1)
 
