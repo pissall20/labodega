@@ -25,16 +25,13 @@ def save_review_from_row(review_row):
 if __name__ == "__main__":
 
     if len(sys.argv) == 2:
-        print "Reading from file " + str(sys.argv[1])
+        print ("Reading from file " + str(sys.argv[1]))
         reviews_df = pd.read_csv(sys.argv[1])
         print reviews_df
 
-        reviews_df.apply(
-            save_review_from_row,
-            axis=1
-        )
+        reviews_df.apply(save_review_from_row, axis=1)
 
-        print "There are {} reviews in DB".format(Review.objects.count())
+        print("There are {} reviews in DB".format(Review.objects.count()))
 
     else:
-        print "Please, provide Reviews file path"
+        print("Please, provide Reviews file path")

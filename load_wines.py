@@ -20,16 +20,13 @@ def save_wine_from_row(wine_row):
 if __name__ == "__main__":
 
     if len(sys.argv) == 2:
-        print "Reading from file " + str(sys.argv[1])
+        print ("Reading from file " + str(sys.argv[1]))
         wines_df = pd.read_csv(sys.argv[1])
         print wines_df
 
-        wines_df.apply(
-            save_wine_from_row,
-            axis=1
-        )
+        wines_df.apply(save_wine_from_row, axis=1)
 
-        print "There are {} wines".format(Wine.objects.count())
+        print("There are {} wines".format(Wine.objects.count()))
 
     else:
-        print "Please, provide Wine file path"
+        print("Please, provide Wine file path")

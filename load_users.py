@@ -20,16 +20,13 @@ def save_user_from_row(user_row):
 if __name__ == "__main__":
 
     if len(sys.argv) == 2:
-        print "Reading from file " + str(sys.argv[1])
+        print ("Reading from file " + str(sys.argv[1]))
         users_df = pd.read_csv(sys.argv[1])
         print users_df
 
-        users_df.apply(
-            save_user_from_row,
-            axis=1
-        )
+        users_df.apply(save_user_from_row, axis=1)
 
-        print "There are {} users".format(User.objects.count())
+        print("There are {} users".format(User.objects.count()))
 
     else:
-        print "Please, provide User file path"
+        print("Please, provide User file path")
