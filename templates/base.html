@@ -8,11 +8,11 @@
     <nav class="navbar navbar-default">
         {% if user.is_authenticated %}
         <div class="navbar-header">
-            <a class="navbar-brand" href="{% url 'reviews:review_list' %}">W!neboiz</a>
+            <a class="navbar-brand" href="{% url 'reviews:review_list' %}">La Bodega</a>
         </div>
         {% else %}
         <div class="navbar-header">
-            <a class="navbar-brand" href="{% url 'login' %}">W!neboiz</a>
+            <a class="navbar-brand" href="{% url 'login' %}">La Bodega</a>
         </div>
         {% endif %}
 
