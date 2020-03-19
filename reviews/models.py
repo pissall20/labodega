@@ -9,8 +9,8 @@ class Wine(models.Model):
     name = models.CharField(max_length=200)
 
     def average_rating(self):
-        all_ratings = map(lambda x: x.rating, self.review_set.all())
-        return np.mean(all_ratings)
+        all_ratings = list(map(lambda x: x.rating, self.review_set.all()))
+        return int(np.mean(all_ratings))
 
     def __unicode__(self):
         return self.name

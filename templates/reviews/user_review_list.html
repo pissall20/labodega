@@ -1,5 +1,38 @@
-{% extends 'reviews/review_list.html' %}
+{% extends 'base.html' %}
+{% load static %}
+{% load times %}
 
-{% block title %}
-<h2>Reviews by {{ username }}</h2>
+{% block content %}
+
+  <link rel="stylesheet" href="{% static 'assets/css/latest_wine.css'%}">
+
+<h2 class="heading">Reviews by {{ username }}</h2>
+
+<section>
+
+  {% if latest_review_list %}
+    {% for review in latest_review_list %}
+      <div class="card">
+        <a href="{% url 'reviews:review_detail' review.id %}">
+          <h2>{{ review.wine.name }}</h2>
+
+          <div class="star-rating" data-star="5">
+            {% for i in review.rating|times %}
+              <i class="fa fa-star" aria-hidden="true"></i>
+            {%endfor%}
+          </div>
+          <div class="reviews">
+            By <strong>{{ review.user_name }}</strong>
+          </div>
+
+        </a>
+      </div>
+      {% endfor %}
+  {% else %}
+  <p>No reviews are available.</p>
+  {% endif %}
+
+</section>
+
+
 {% endblock %}

@@ -1,11 +1,36 @@
 {% extends 'base.html' %}
-
-{% block title %}
-<h2><a href="{% url 'reviews:wine_detail' review.wine.id %}">{{ review.wine.name }}</a></h2>
-{% endblock %}
+{% load static %}
+{% load times %}
 
 {% block content %}
-<h4>Rated {{ review.rating }} of 5 by <a href="{% url 'reviews:user_review_list' review.user_name %}" >{{ review.user_name }}</a></h4>
-<p>{{ review.pub_date }}</p>
-<p>{{ review.comments }}</p>
+
+  <link rel="stylesheet" href="{% static 'assets/css/review.css'%}">
+
+<h2 class="heading">{{ review.wine.name }}</h2>
+
+<section>
+
+
+  <div class="star-rating" data-star="5">
+
+    {% for i in review.rating|times %}
+      <i class="fa fa-star" aria-hidden="true"></i>
+    {%endfor%}
+
+  </div>
+
+  <div class="review">
+    By <strong>{{ review.user_name }}</strong>
+  </div>
+
+  <div class="time">
+    {{ review.pub_date }}
+  </div>
+
+  <div class="comment">
+    {{ review.comments }}
+  </div>
+
+</section>
+
 {% endblock %}
