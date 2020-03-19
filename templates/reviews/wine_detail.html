@@ -1,43 +1,94 @@
-{% extends 'base.html' %}
-{% load bootstrap3 %}
-
-{% block title %}
-<h2>{{ wine.name }}</h2>
-<h5>{{ wine.review_set.count }} reviews ({{ wine.average_rating | floatformat }} average rating)</h5>
-{% endblock %}
+{% extends 'base.html'%}
+{% load static %}
+{% load times %}
 
 {% block content %}
-<h3>Recent reviews</h3>
 
-{% if wine.review_set.all %}
-<div class="row">
-    {% for review in wine.review_set.all %}
-    <div class="col-xs-6 col-lg-4">
-        <em>{{ review.comment }}</em>
-        <h6>Rated {{ review.rating }} of 5 by <a href="{% url 'reviews:user_review_list' review.user_name %}" >{{ review.user_name }}</a></h6>
-        <h5><a href="{% url 'reviews:review_detail' review.id %}">
-        Read more
-        </a></h5>
-    </div>
-    {% endfor %}
-</div>
-{% else %}
-<p>No reviews for this wine yet</p>
-{% endif %}
+<h2 class="heading">{{ wine.name }}</h2>
+
+<section>
+
+  <link rel="stylesheet" href="{% static 'assets/css/wine.css'%}">
+
+  <div class="star-rating" data-star="5">
+
+    {% for i in wine.average_rating|times %}
+      <i class="fa fa-star" aria-hidden="true"></i>
+    {%endfor%}
+
+  </div>
+
+  <div class="reviews">
+    {{ wine.review_set.count }} Reviews
+  </div>
+
+
+  <h3>Recent reviews</h3>
+  <div class="recent">
+
+    <section>
+
+      {% if wine.review_set.all %}
+      {% for review in wine.review_set.all %}
+      <div class="card">
+        <a href="{% url 'reviews:review_detail' review.id %}">
+          <p>{{ review.comments }}</p>
+
+          <div class="star-rating" data-star="5">
+            {% for i in review.rating|times %}
+              <i class="fa fa-star" aria-hidden="true"></i>
+            {% endfor %}
+          </div>
+          <div class="reviews">
+            By <strong>{{ review.user_name }}</strong>
+          </div>
+
+        </a>
+      </div>
+      {% endfor %}
+      {% else %}
+      <p>No reviews for this wine yet</p>
+      {% endif %}
+
+
+
+</section>
 
 {% if user.is_authenticated %}
-<h3>Add your review</h3>
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<div>
 
-<form action="{% url 'reviews:add_review' wine.id %}" method="post" class="form">
+
+<h3>Add your review</h3>
+
+<br>
+
+<div class="add-review">
+
+  <form action="{% url 'reviews:add_review' wine.id %}" method="post" >
     {% csrf_token %}
-    {% bootstrap_form form layout='inline' %}
-    {% buttons %}
-    <button type="submit" class="btn btn-primary">
-      {% bootstrap_icon "star" %} Add
-    </button>
-    {% endbuttons %}
-</form>
+
+<label for="star">Rate :</label>
+  <select class="star" name="rating">
+    <option value="0">0</option>
+    <option value="0">1</option>
+    <option value="0">2</option>
+    <option value="0">3</option>
+    <option value="0">4</option>
+    <option value="0">5</option>
+  </select>
+  <br>
+  <br>
+
+  <textarea name="comments" placeholder="comments"></textarea>
+<br>
+
+  <input type="submit" name="button" value="Submit">
+
+  </form>
+</div>
+</div>
 {% endif %}
+
+
 
 {% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+
+
+{% block title %}
+<h2 style="text-align:center;">Register</h2>
+{% endblock %}
+
+{% block content %}
+
+<style>
+.form-control {
+margin:auto;
+width:240px;
+}
+
+.form-group {
+text-align:center;
+}
+</style>
+
+<form method="post" class="form">
+    {% csrf_token %}
+    {% bootstrap_form form layout='inline' %}
+    {% buttons %}
+    <button type="submit" class="btn btn-primary">
+      {% bootstrap_icon "user" %} Register
+    </button>
+    {% endbuttons %}
+</form>
+{% endblock %}

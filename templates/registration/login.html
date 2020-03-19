@@ -1,37 +1,28 @@
 {% extends 'base.html' %}
-{% load bootstrap3 %}
-
-
-{% block title %}
-<h2 style="text-align:center;">Login to La Bodega</h2>
-{% endblock %}
+{% load static %}
 
 
 
 {% block content %}
 
-<style>
-.form-control {
-margin:auto;
-width:240px;
-}
+  <link rel="stylesheet" href="{% static 'assets/css/login.css' %}">
 
-.form-group {
-text-align:center;
-}
-</style>
-
-{% if user.is_authenticated %}
-<p style="text-align:center;">Thank you! You're already logged in.</p>
-{% else %}
-<form action="{% url 'login' %}" method="post" class="form">
-    {% csrf_token %}
-    {% bootstrap_form form layout='inline' %}
-    {% buttons %}
-    <button type="submit" class="btn btn-primary" style="margin:auto;">
-      {% bootstrap_icon "user" %} Login
-    </button>
-    {% endbuttons %}
-</form>
-{% endif %}
+  {% if user.is_authenticated %}
+    <p style="text-align:center;">Thank you! You're already logged in.</p>
+  {% else %}
+    <section>
+      <div class="form">
+        <h2>Login your account</h2>
+        <form  action="{% url 'login' %}" method="post" class="login">
+          {% csrf_token %}
+          <input type="text" name="username" placeholder="Username"> <br>
+          <input type="password" name="password" placeholder="Password"> <br>
+          <input type="submit" name="button" Value="Login">
+        </form>
+      </div>
+      <div class="graphic">
+        <img src="{% static 'assets/images/wine2.svg' %}" alt="">
+      </div>
+    </section>
+    {% endif %}
 {% endblock %}

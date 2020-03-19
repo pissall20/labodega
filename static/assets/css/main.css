@@ -1,0 +1,119 @@
+/* List of contents
+  1) Reset
+  2) Variables
+  3) Fonts
+  4) Header
+  5) Cards
+  6) Heading
+  7) Special Styling
+
+ */
+
+/* Reset */
+*{
+  margin: 0px;
+  padding: 0px;
+}
+a,a:active, a:hover, a:visited{
+  color: black;
+  text-decoration: none;
+}
+
+/* Variables */
+:root{
+  --blue: #403070;
+  --orange: #fb614a;
+}
+
+/* Fonts */
+@font-face {
+  font-family: Htext;
+  src: url('./../fonts/Rubik/Rubik-Bold.ttf');
+}
+
+@font-face {
+  font-family: Ptext;
+  src: url('./../fonts/Rubik/Rubik-Regular.ttf');
+}
+
+
+/* Header */
+header{
+  display: flex;
+  justify-content: space-around;
+  height: 50px;
+  line-height: 50px;
+  background: var(--blue);
+}
+
+header div.logo a, header div.logo a:active, header div.logo a:visited{
+  font-size: 2em;
+  font-family: Htext;
+  color: var(--orange);
+}
+
+header div.logo a:hover{
+  color: white;
+}
+
+header div a, header div a:active, header div a:visited{
+  font-size: 1em;
+  font-family: Ptext;
+  font-weight: 600;
+  margin: 0 10px;
+  color: white;
+  transition: color 0.5s;
+}
+
+header div a:hover, header div a.active{
+  color: var(--orange);
+}
+
+
+/* Cards */
+
+section .card{
+  width: 410px;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 12px;
+  background: var(--blue);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+section .card:hover{
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+section .card a{
+  color: white;
+  font-family: Htext;
+}
+
+section .card h2{
+  margin-bottom: 5px;
+}
+
+section .card .reviews{
+  font-size: 0.8em;
+}
+
+.star-rating{
+  color: var(--orange);
+}
+
+/* Heading */
+
+h2.heading{
+    font-family: Htext;
+    margin-top: 50px;
+    margin-left: 10px;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+}
+
+/* Special Styling */
+strong{
+  color: var(--orange);
+}

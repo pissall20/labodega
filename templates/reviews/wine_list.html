@@ -1,23 +1,35 @@
 {% extends 'base.html' %}
-
-{% block title %}
-<h2>Wine list</h2>
-{% endblock %}
+{% load static %}
+{% load times %}
 
 {% block content %}
-{% if wine_list %}
-<div class="row">
-    {% for wine in wine_list %}
-    <div class="col-xs-6 col-lg-4 col-md-4">
-        <h4><a href="{% url 'reviews:wine_detail' wine.id %}">
-        {{ wine.name }}
-        </a></h4>
-        <h5>{{ wine.review_set.count }} reviews</h5>
-        <h5>{{ wine.average_rating | floatformat }} average rating</h5>
-    </div>
-    {% endfor %}
-</div>
-{% else %}
-    <p>No wines are available.</p>
-{% endif %}
+
+<link rel="stylesheet" href="{% static 'assets/css/wine_list.css' %}">
+
+  <h2 class="heading">Wine List</h2>
+
+  {% if wine_list %}
+    <section>
+
+      {% for wine in wine_list %}
+        <div class="card">
+          <a href="{% url 'reviews:wine_detail' wine.id %}">
+            <h2>{{ wine.name }}</h2>
+            <div class="reviews">
+              {{ wine.review_set.count }} Reviews
+            </div>
+            <div class="star-rating">
+              {% for i in wine.average_rating|times %}
+                <i class="fa fa-star" aria-hidden="true"></i>
+              {%endfor%}
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+
+    </section>
+    {% else %}
+        <p>No wines are available.</p>
+    {% endif %}
+
 {% endblock %}

@@ -10,7 +10,6 @@ from django.contrib.auth import login, authenticate
 import datetime
 from django.contrib.auth.decorators import login_required
 
-
 def signup(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
