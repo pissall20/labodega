@@ -5,7 +5,7 @@ Click==7.0
 confusable-homoglyphs==3.2.0
 Django==1.11.23
 django-bootstrap3==11.1.0
-django-registration==2.4.1
+django-registration==3.1.2
 joblib==0.13.2
 numpy==1.17.1
 pandas==0.25.1
